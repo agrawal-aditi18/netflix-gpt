@@ -13,8 +13,21 @@ const Login = () => {
 
   const handleButtonClick = () => {
     // Validate the form data before signIn or signUp ---- Form Validation.
-    const message = checkValidData(email.current.value, password.current.value, name.current.value, mobileNo.current.value);
+    if (isSignInForm) {
+    const message = checkValidData(
+      email.current.value,
+      password.current.value
+    );
     setErrorMessage(message);
+  } else {
+    const message = checkValidData(
+      email.current.value,
+      password.current.value,
+      name.current.value,
+      mobileNo.current.value
+    );
+    setErrorMessage(message);
+  }
 
   }
   const toggleSignInForm = () => {
