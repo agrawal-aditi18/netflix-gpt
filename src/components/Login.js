@@ -1,27 +1,51 @@
 import React, { useState, useRef } from 'react'
 import Header from './Header'
 import {checkValidData} from "../utils/validate"
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile  } from "firebase/auth";
 import {auth} from "../utils/firebase"
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../utils/userSlice';
 
 const Login = () => {
   const [isSignInForm , setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
   const mobileNo = useRef(null);
 
   const handleButtonClick = () => {
-    // Validate the form data before signIn or signUp ---- Form Validation.
-    if (isSignInForm) {
+
+  if (isSignInForm) {
+    // Sign In Validation
     const message = checkValidData(
       email.current.value,
       password.current.value
     );
     setErrorMessage(message);
+
+    if (message) return;
+
+    // Sign In Logic
+    signInWithEmailAndPassword(
+      auth,
+      email.current.value,
+      password.current.value
+    )
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log(user);
+      navigate("/browse");
+    })
+    .catch((error) => {
+      setErrorMessage(error.code + " - " + error.message);
+    });
+
   } else {
+    // Sign Up Validation
     const message = checkValidData(
       email.current.value,
       password.current.value,
@@ -30,38 +54,35 @@ const Login = () => {
     );
     setErrorMessage(message);
 
-    if(message) return;
+    if (message) return;
 
-    if(!isSignInForm){
-      //Sign Up Logic
-      createUserWithEmailAndPassword(auth, email.current.value,password.current.value)
-      .then((userCredential) => {
+    // Sign Up Logic
+    createUserWithEmailAndPassword(
+      auth,
+      email.current.value,
+      password.current.value
+    )
+    .then((userCredential) => {
       const user = userCredential.user;
-      console.log(user);
+      updateProfile(user, {
+        displayName: name.current.value, photoURL: "https://images.unsplash.com/photo-1740252117070-7aa2955b25f8?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      }).then(() => {
+        const {uid, email, displayName, photoURL} = auth.currentUser;
+                dispatch(addUser({uid : uid, email: email, displayName: displayName, photoURL: photoURL}))
+                
+
+      }).catch((error) => {
+        setErrorMessage(error.message);
+      });
+      // console.log(user);
+      navigate("/browse");
     })
     .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    setErrorMessage(errorCode +"-"+ errorMessage);
+      setErrorMessage(error.code + " - " + error.message);
     });
-    }
-    else{
-      //Sign In Logic
-      signInWithEmailAndPassword(auth, email.current.value,password.current.value)
-      .then((userCredential) => {
-      const user = userCredential.user;
-      console.log(user);
-       })
-      .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      setErrorMessage(errorCode +"-"+ errorMessage);
-      });
-    }
-
   }
+};
 
-  }
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm)
   }
