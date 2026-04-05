@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfi
 import {auth} from "../utils/firebase"
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+import { USER_AVATAR } from '../utils/constants';
 
 const Login = () => {
   const [isSignInForm , setIsSignInForm] = useState(true);
@@ -63,7 +64,7 @@ const Login = () => {
     .then((userCredential) => {
       const user = userCredential.user;
       updateProfile(user, {
-        displayName: name.current.value, photoURL: "https://images.unsplash.com/photo-1740252117070-7aa2955b25f8?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        displayName: name.current.value, photoURL:USER_AVATAR
       }).then(() => {
         const {uid, email, displayName, photoURL} = auth.currentUser;
                 dispatch(addUser({uid : uid, email: email, displayName: displayName, photoURL: photoURL}))
