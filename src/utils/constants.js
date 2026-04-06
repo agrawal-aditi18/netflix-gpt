@@ -4,7 +4,7 @@ export const API_OPTIONS= {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMjg3NTgwOTEzN2QxNThjMmZlMTI2NjI4MDJhZDUyZCIsIm5iZiI6MTc3NTM4Nzc3OS45NjIsInN1YiI6IjY5ZDI0NDgzMzFiZWQxMzZkM2FlZjgyMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.CuIBgr7r7OK9gcdlcwGP463jEtrT8aTIScQIg7pSfxw'
+    Authorization: 'Bearer' + process.env.REACT_APP_TMDB_KEY,
   }
 };
 export const PLAY_ICON="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyDLgfE_EJXOP3IQopiEuexRIT1hUM3hCLqw&s"
@@ -17,3 +17,5 @@ export const SUPPORTED_LANGUAGES = [
   { identifier: "hindi", name: "Hindi" },
   { identifier: "korean", name: "Korean" },
 ];
+
+export const GEMINI_AI_KEY=process.env.REACT_APP_GEMINI_AI_KEY;
