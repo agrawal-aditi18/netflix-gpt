@@ -9,3 +9,4 @@ export const API_OPTIONS= {
 };
 export const PLAY_ICON="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyDLgfE_EJXOP3IQopiEuexRIT1hUM3hCLqw&s"
 export const MORE_INFO_ICON="https://img.icons8.com/ios7/200/FFFFFF/info--v3.png"
+export const IMG_CDN_URL="https://image.tmdb.org/t/p/w500"
