@@ -55,11 +55,11 @@ const Header = () => {
     dispatch(changeLanguage(e.target.value))
   }
   return (
-    <div className='absolute w-screen py-2 px-32 bg-gradient-to-b from-black z-10 flex justify-between'>
-        <img className='w-48' 
+    <div className='absolute w-screen py-2 px-32 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between'>
+        <img className='w-48 mx-auto md:mx-0 ' 
         src={LOGO}
         alt="netflix-logo"/>
-        {user && (<div className='flex p-2 items-center'>
+        {user && (<div className='flex justify-between p-2 items-center'>
           {showGptSearch && (<select className="p-2 m-2 bg-gray-900 text-white rounded-md" onClick={handleLanguageChange}>
             {SUPPORTED_LANGUAGES.map((lang) => (
                 <option key={lang.identifier} value={lang.identifier}>
@@ -71,7 +71,7 @@ const Header = () => {
           onClick={handleGptSearchClick}>
             {showGptSearch? "Browse" : "GPT Search"}
           </button>
-          <img className='w-12 h-12 hover:scale-110 transition-transform duration-200' alt="user-icon"
+          <img className='hidden md:block w-12 h-12 hover:scale-110 transition-transform duration-200' alt="user-icon"
           src={user?.photoURL}/>
           <img 
           onClick={handleSignOut}
