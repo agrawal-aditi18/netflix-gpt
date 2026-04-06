@@ -11,3 +11,9 @@ export const PLAY_ICON="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy
 export const MORE_INFO_ICON="https://img.icons8.com/ios7/200/FFFFFF/info--v3.png"
 export const IMG_CDN_URL="https://image.tmdb.org/t/p/w500"
 export const BG_URL="https://assets.nflxext.com/ffe/siteui/vlv3/f86b16bf-4c16-411c-8357-22d79beed09c/web/IN-en-20251222-TRIFECTA-perspective_d4acb127-f63f-4a98-ad0b-4317b0b3e500_small.jpg"
+
+export const SUPPORTED_LANGUAGES = [
+  { identifier: "en", name: "English" },
+  { identifier: "hindi", name: "Hindi" },
+  { identifier: "korean", name: "Korean" },
+];

@@ -4,6 +4,7 @@ import GptMovieSuggestions from './GptMovieSuggestions'
 import { BG_URL } from '../utils/constants'
 
 const GptSearch = () => {
+  
   return (
     <div>
       <div className='absolute -z-10'>
