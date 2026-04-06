@@ -7,3 +7,5 @@ export const API_OPTIONS= {
     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMjg3NTgwOTEzN2QxNThjMmZlMTI2NjI4MDJhZDUyZCIsIm5iZiI6MTc3NTM4Nzc3OS45NjIsInN1YiI6IjY5ZDI0NDgzMzFiZWQxMzZkM2FlZjgyMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.CuIBgr7r7OK9gcdlcwGP463jEtrT8aTIScQIg7pSfxw'
   }
 };
+export const PLAY_ICON="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyDLgfE_EJXOP3IQopiEuexRIT1hUM3hCLqw&s"
+export const MORE_INFO_ICON="https://img.icons8.com/ios7/200/FFFFFF/info--v3.png"
