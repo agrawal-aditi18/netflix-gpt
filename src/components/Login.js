@@ -17,12 +17,13 @@ const Login = () => {
   const mobileNo = useRef(null);
 
   const handleButtonClick = () => {
+    if (!email.current || !password.current) return;
 
   if (isSignInForm) {
     // Sign In Validation
     const message = checkValidData(
-      email.current.value,
-      password.current.value
+      email.current?.value,
+      password.current?.value
     );
     setErrorMessage(message);
 
@@ -45,11 +46,12 @@ const Login = () => {
 
   } else {
     // Sign Up Validation
+    if (!name.current || !mobileNo.current) return;
     const message = checkValidData(
-      email.current.value,
-      password.current.value,
-      name.current.value,
-      mobileNo.current.value
+      email.current?.value,
+      password.current?.value,
+      name.current?.value,
+      mobileNo.current?.value
     );
     setErrorMessage(message);
 
@@ -64,7 +66,7 @@ const Login = () => {
     .then((userCredential) => {
       const user = userCredential.user;
       updateProfile(user, {
-        displayName: name.current.value, photoURL:USER_AVATAR
+        displayName: name.current?.value, photoURL:USER_AVATAR
       }).then(() => {
         const {uid, email, displayName, photoURL} = auth.currentUser;
                 dispatch(addUser({uid : uid, email: email, displayName: displayName, photoURL: photoURL}))
@@ -102,7 +104,7 @@ const Login = () => {
         {!isSignInForm && (<input ref={mobileNo} className='rounded-sm p-4 my-2 w-full bg-transparent border-2 ' type ="text" placeholder='Mobile Number'/>)}
         <input ref={password} className='rounded-sm p-4 my-2 w-full bg-transparent border-2' type ="password" placeholder='Password' />
         <p className='text-red-400 font-bold text-md py-2'>{errorMessage}</p>
-        <button className='px-4 py-2 rounded-md my-2 w-full bg-red-600 font-bold' onClick={handleButtonClick}>{isSignInForm ? "Sign In" : "Sign Up"}</button>
+        <button type="button" className='px-4 py-2 rounded-md my-2 w-full bg-red-600 font-bold' onClick={handleButtonClick}>{isSignInForm ? "Sign In" : "Sign Up"}</button>
         <p className='py-4'><span onClick={toggleSignInForm} className='cursor-pointer font-bold'>
         {isSignInForm? "New to Netflix-gpt? SignUp Now." : "Already a User? SignIn Now."}</span>
         </p>

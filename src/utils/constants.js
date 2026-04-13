@@ -4,7 +4,7 @@ export const API_OPTIONS= {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer' + process.env.REACT_APP_TMDB_KEY,
+    Authorization: 'Bearer ' + process.env.REACT_APP_TMDB_KEY,
   }
 };
 export const PLAY_ICON="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyDLgfE_EJXOP3IQopiEuexRIT1hUM3hCLqw&s"
