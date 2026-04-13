@@ -90,11 +90,10 @@ const Login = () => {
   return (
     <div>
       <Header />
-      <div className='absolute'>
-        <img className='h-screen object-cover'
-        src={BG_URL}
-        alt="bg-img"/>
-      </div>
+      <div
+      className="fixed top-0 left-0 w-full h-screen bg-cover bg-center -z-10"
+      style={{ backgroundImage: `url(${BG_URL})` }}
+      ></div>
       <form
       onSubmit={(e) => e.preventDefault()}
        className='absolute w-full md:w-[29%] p-12 bg-black my-36 mx-auto right-0 left-0 text-white bg-opacity-80 rounded-md'>

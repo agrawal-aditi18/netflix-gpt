@@ -7,9 +7,10 @@ const GptSearch = () => {
   
   return (
      <>
-      <div className="fixed -z-10">
-        <img className="h-screen object-cover" src={BG_URL} alt="logo" />
-      </div>
+      <div
+      className="fixed top-0 left-0 w-full h-screen bg-cover bg-center -z-10"
+      style={{ backgroundImage: `url(${BG_URL})` }}
+      ></div>
       <div>
         <GptSearchBar />
         <GptMovieSuggestions />
